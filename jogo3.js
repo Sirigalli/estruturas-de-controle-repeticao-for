@@ -84,30 +84,34 @@ const heroi = {
   // INÍCIO DO JOGO
   // ============================================================
   
+// EXPLICAÇÃO DA MINHA LINHA DE PENSAMENTO DE CRIACAO DE CODIGO PARA O JOGO:
+// Conforme eu pesquisei pra facilitar a criacao do codigo,
+// vou fazer um loop (for) sobre o codigo inteiro.
+// O coração do codigo é a verificao se o heroi e 
+// O inimigo estao vivos pra continuar o loop nos turnos
+
   console.log("╔═════════════════════════════════════╗");
   console.log("║   BEM VINDO(A) AO ELDRIN VORATHAR   ║");
-  console.log("╚═════════════════════════════════════╝");
-  
+  console.log("╚═════════════════════════════════════╝");  
   // Peça o nome do herói e exiba as regras do jogo resumidamente.
-  // → Seu código aqui:
-  
-  let nameHero = readline.question("Digite o nome do seu Heroi: ");
+  // → Seu código aqui: 
+heroi.nome = readline.question("Digite o nome do heroi: "); //ATUALIZA NOME DO HEROI DENTRO DO OBJETO
   console.log(`
-🧙‍♂️ === REGRAS DO RPG: BATALHA POR TURNOS === 🧙‍♂️
+ === REGRAS DO RPG: BATALHA POR ELDRIN VORATHAR ===
 
 // REGRAS:
 
-👤 HERÓI
-- O herói começa com 100 HP ❤️
+=== HERÓI 
+- O herói começa com 100 HP 
 
-👹 INIMIGOS
+== INIMIGOS
 - Cada inimigo é um objeto com:
-  • HP ❤️
-  • Dano mínimo ⚔️
-  • Dano máximo ⚔️
+  • HP 
+  • Dano mínimo 
+  • Dano máximo 
 - Todos os inimigos ficam em um array
 
-⚔️ AÇÕES DO HERÓI (por turno)
+--- AÇÕES DO HERÓI (por turno)
 1 – Atacar
    • Causa dano aleatório entre o dano mínimo e máximo
 
@@ -115,35 +119,32 @@ const heroi = {
    • Reduz em 75% o dano recebido neste turno (arredondado para baixo)
 
 3 – Curar
-   • Recupera entre 10 e 20 HP 💚
+   • Recupera entre 10 e 20 HP 
    • Pode ser usado apenas 1 vez por batalha
 
-🤖 AÇÕES DO INIMIGO (por turno)
-- 70% de chance de atacar ⚔️
-- 20% de chance de defender 🛡️
-- 10% de chance de curar 💚 (1 vez por batalha)
+--- AÇÕES DO INIMIGO (por turno)
+- 70% de chance de atacar 
+- 20% de chance de defender 
+- 10% de chance de curar  (1 vez por batalha)
 
-⚡ COMBATE
+--- COMBATE
 - O ataque do herói e do inimigo acontecem simultaneamente
 - O dano é sempre aleatório entre o mínimo e máximo
 
-💥 GOLPE CRÍTICO
+--- GOLPE CRÍTICO
 - 5% de chance (para ambos)
 - Causa o DOBRO de dano
 - Exibir mensagem de "CRÍTICO!" quando acontecer
 
-🏆 RESULTADOS
+--- RESULTADOS
 - Se o herói vencer:
   • Recupera 25 HP (máximo de 100)
 
 - Se o herói perder:
-  • GAME OVER ☠️
+  • GAME OVER 
 
-🎮 Boa sorte, aventureiro!
+ === Boa sorte, aventureiro! ===
 `);
-  
-  console.log("_______________________________");
-  
   // ============================================================
   // LOOP DE BATALHAS
   // ============================================================
@@ -153,28 +154,18 @@ const heroi = {
   console.log("╚════════════════════════════╝");
   
   // → Seu código aqui:
-  
+for (let i = 0; i < inimigos.length; i++) { //LOOP SOBRE O CODIGO INTEIRO
+let inimigo = inimigos[i]; 
+let curaHeroi = false;
+let curaInimigo = false;
   console.log(`
-  ===== SEU PRIMEIRO INIMIGO É =====
-  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣿⣿⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-  ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢧⡀⠀⠀⠀⠀⠀⠀⠀⠀
-  ⠀⠢⣤⣀⡀⠀⠀⠀⢿⣧⣄⡉⠻⢿⣿⣿⡿⠟⢉⣠⣼⡿⠀⠀⠀⠀⣀⣤⠔⠀
-  ⠀⠀⠈⢻⣿⣶⠀⣷⠀⠉⠛⠿⠶⡴⢿⡿⢦⠶⠿⠛⠉⠀⣾⠀⣶⣿⡟⠁⠀⠀
-  ⠀⠀⠀⠀⠻⣿⡆⠘⡇⠘⠷⠠⠦⠀⣾⣷⠀⠴⠄⠾⠃⢸⠃⢰⣿⠟⠀⠀⠀⠀
-  ⠀⠀⠀⠀⠀⠋⢠⣾⣥⣴⣶⣶⣆⠘⣿⣿⠃⣰⣶⣶⣦⣬⣷⡄⠙⠀⠀⠀⠀⠀
-  ⠀⠀⠀⠀⠀⠀⢋⠛⠻⠿⣿⠟⢹⣆⠸⠇⣰⡏⠻⣿⠿⠟⠛⡙⠀⠀⠀⠀⠀⠀
-  ⠀⠀⠀⠀⠀⠀⠈⢧⡀⠠⠄⠀⠈⠛⠀⠀⠛⠁⠀⠠⠄⢀⡼⠁⠀⠀⠀⠀⠀⠀
-  ⠀⠀⠀⠀⠀⠀⠀⠈⢻⣦⡀⠃⠀⣿⡆⢰⣿⠀⠘⢀⣴⡟⠁⠀⠀⠀⠀⠀⠀⠀
-  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣦⡀⠘⠇⠸⠃⢀⣴⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀
-  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣷⣄⣠⣾⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⣿⣿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-  `)
-  console.table(inimigos[0])
-
-  console.log(`
+ SEU PROXIMO INIMIGO É:`);
+  console.table(inimigos[i])
+ for (;;) { //ISSO AQUI É NOVO PRA MIM
+    if (heroi.hpAtual <= 0 || inimigo.hp <= 0) break;
+ console.log(`${heroi.nome}: ${heroi.hpAtual}/${heroi.hpMax}`);
+ console.log(`${inimigo.nome}: ${inimigo.hp} HP`);
+ console.log(`
   ===== ESCOLHA UMA ACAO =====
     1 – Atacar
         • Causa dano aleatório entre o dano mínimo e máximo
@@ -184,34 +175,73 @@ const heroi = {
         • Recupera entre 10 e 20 HP 
         • Pode ser usado apenas 1 vez por batalha
   `);
-
-  
   let acaoDoHeroi = readline.questionInt("Digite sua acao: ");
+   if(acaoDoHeroi < 1 || acaoDoHeroi > 3) {  
+    console.log("Opção inválida! Digite 1, 2 ou 3. Inicie o jogo novamente...");
+    process.exit();
+  }; //VALIDACAO QUE O USUARIO RETORNE APENAS 1, 2 OU 3, SE NÃO, PROCESS.EXIT ENCERRA O CODIGO
   let danoDoHeroi = 0;
-
-
-  switch (acaoDoHeroi) {
-      case 1:
-        danoDoHeroi = Math.floor(Math.random() * (25 - 15 + 1)) + 15;
-        console.log(`O DANO DO HEROI É: ${danoDoHeroi}`)
-        inimigos[0].hp = inimigos[0].hp - danoDoHeroi
-        console.log(`HP RESTANTE DO INIMIGO: ${inimigos[0].hp}`)
-        break
-      case 2:
-        
-        break
-      case 3:
-
-        break
-      default:
-        console.log("Opcao invalida! Encerrando jogo...")
+  let danoInimigo = 0;
+  let defesaInimigo = false;
+  let defesaHeroi = false;
+  if (acaoDoHeroi === 1) {
+    danoDoHeroi =  Math.floor(Math.random() * (heroi.danoMax - heroi.danoMin + 1)) + heroi.danoMin; //MATH.RANDON PARA RETORNAR NUMERO ALEATORIO
+      if (Math.random() < 0.05) {
+        danoDoHeroi *= 2;
+        console.log("DANO CRITICO!!!")
+      }
+  } else if (acaoDoHeroi === 2) {
+        defesaHeroi = true;
+  } else if (acaoDoHeroi === 3) {
+    if (!curaHeroi) {
+        let cura = Math.floor(Math.random() * 11) + 10;
+        heroi.hpAtual = Math.min(heroi.hpAtual + cura, heroi.hpMax); //MATH MIN PARA RETORNAR MENOR VALOR
+        curaHeroi= true; //AQUI BLOQUEIA O USO DA CURA
+        console.log(` Você curou ${cura} HP!`);
+    } else {
+      console.log("Cura Ja Usada");  //SE TENTAR USAR CURA MAIS DE UMA VEZ APARECE ESSA MSG
+    }
   }
-
-  //const numero = Math.floor(Math.random() * (25 - 15 + 1)) + 15;
-//console.log(numero);
-
-  console.log("_______________________________");
-  
+  let ProbabilidadeAleatoria = Math.random();
+  if (ProbabilidadeAleatoria < 0.7) { //AQUI ONDE O PROFESSOR FALOU PRA USAR O MATH.RANDOM E COMPARAR PARA TER A AÇÃO DO INIMIGO
+    danoInimigo = Math.floor(Math.random() * (inimigo.danoMax - inimigo.danoMin + 1)) + inimigo.danoMin;
+        if (Math.random() < 0.05) {
+    danoInimigo *= 2;
+    console.log("CRITICO DO INIMIGO!!!");
+  }
+} else if (ProbabilidadeAleatoria < 0.9){
+     defesaInimigo = true;
+} else {
+  if (!curaInimigo){
+    let cura = Math.floor(Math.random() * 11) + 10;
+    inimigo.hp += cura;
+    curaInimigo = true;
+    console.log(` ${inimigo.nome} se curou ${cura} HP!`);
+    }
+  }
+  if (defesaHeroi){
+      danoInimigo = Math.floor(danoInimigo * 0.25);
+    }
+    if (defesaInimigo){
+      danoDoHeroi= Math.floor(danoDoHeroi * 0.25);
+    }
+    inimigo.hp -= danoDoHeroi;
+    heroi.hpAtual -= danoInimigo;
+    console.log(` Você causou ${danoDoHeroi}`);
+    console.log(` O inimigo causou ${danoInimigo} de dano`);
+  }
+  if (heroi.hpAtual <= 0) {
+    console.log(`
+ === GAME OVER! ===
+${heroi.nome} foi derrotado por ${inimigo.nome}
+`);
+    break;
+  } else {
+    console.log(` Você derrotou ${inimigo.nome}!`);
+    heroi.hpAtual = Math.min(heroi.hpAtual + 25, heroi.hpMax);
+    console.log(` Recuperou 25 HP. HP atual: ${heroi.hpAtual}`);
+  }
+}
   // ============================================================
   // RESULTADO FINAL
   // ============================================================
@@ -234,3 +264,12 @@ const heroi = {
   //        "══════════════════════════════"
   
   // → Seu código aqui:
+if (heroi.hpAtual > 0) {
+  console.log(`
+══════════════════════════════
+ VOCÊ VENCEU O JOGO!
+${heroi.nome} sobreviveu a todas as batalhas!
+HP final: ${heroi.hpAtual} / ${heroi.hpMax}
+══════════════════════════════
+`);
+}
