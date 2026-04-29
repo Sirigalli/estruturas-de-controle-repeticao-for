@@ -222,23 +222,23 @@ console.log("_______________________________");
 
 // → Seu código aqui:
 
-let media;
-let soma = 0;
+// let media;
+// let soma = 0;
 
-for (i = 0; i < salarios.length; i++) {
-        soma += salarios[i] 
-};
+// for (i = 0; i < salarios.length; i++) {
+//         soma += salarios[i] 
+// };
 
-media = soma / salarios.length;
-console.log(`Média salarial: R$ ${media}`);
+// media = soma / salarios.length;
+// console.log(`Média salarial: R$ ${media}`);
 
-for (i = 0; i < salarios.length; i++){
-    if(salarios[i] <= media){
-        console.log(`R$ ${salarios[i]} - Abaixo da média`)
-    }else{
-        console.log(`R$ ${salarios[i]} - Acima da média`)  
-    };
-};
+// for (i = 0; i < salarios.length; i++){
+//     if(salarios[i] <= media){
+//         console.log(`R$ ${salarios[i]} - Abaixo da média`)
+//     }else{
+//         console.log(`R$ ${salarios[i]} - Acima da média`)  
+//     };
+// };
 
 
 
@@ -263,6 +263,46 @@ console.log("_______________________________");
 // g) Exiba o array 'turma' com console.table().
 
 // → Seu código aqui:
+
+let aluno1 = {
+    nome: readline.question("Digite o nome do primeiro usuario: "),
+    notas: {
+        nota1: readline.questionFloat("Digite a primeira nota: "), 
+        nota2: readline.questionFloat("Digite a segunda nota: "),   
+        nota3: readline.questionFloat("Digite a terceira nota: ")
+    }
+};
+
+let aluno2 = {
+    nome: readline.question("Digite o nome do segundo usuario: "),
+    notas: {
+        nota1: readline.questionFloat("Digite a primeira nota: "), 
+        nota2: readline.questionFloat("Digite a segunda nota: "),   
+        nota3: readline.questionFloat("Digite a terceira nota: ")
+    }
+};
+
+let aluno3 = {
+    nome: readline.question("Digite o nome do terceiro usuario: "),
+    notas: {
+        nota1: readline.questionFloat("Digite a primeira nota: "), 
+        nota2: readline.questionFloat("Digite a segunda nota: "),   
+        nota3: readline.questionFloat("Digite a terceira nota: ")
+    }
+};
+
+let turma;
+
+turma.push(aluno1, aluno2, aluno3);
+
+let media1 = aluno1.notas.nota1 + aluno1.notas.nota2 + aluno1.notas.nota3 / 3;
+let media2 = aluno2.notas.nota2 + aluno2.notas.nota2 + aluno2.notas.nota3 / 3;
+let media3 = aluno3.notas.nota2 + aluno3.notas.nota2 + aluno3.notas.nota3 / 3;
+
+let mediaTotal = media1 + media2 + media3 / 3;
+
+console.log(turma);
+
 
 
 console.log("_______________________________");
