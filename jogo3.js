@@ -93,10 +93,13 @@ const heroi = {
   console.log("╔═════════════════════════════════════╗");
   console.log("║   BEM VINDO(A) AO ELDRIN VORATHAR   ║");
   console.log("╚═════════════════════════════════════╝");  
+
   // Peça o nome do herói e exiba as regras do jogo resumidamente.
   // → Seu código aqui: 
+
 heroi.nome = readline.question("Digite o nome do heroi: "); //ATUALIZA NOME DO HEROI DENTRO DO OBJETO
-  console.log(`
+
+console.log(`
  === REGRAS DO RPG: BATALHA POR ELDRIN VORATHAR ===
 
 // REGRAS:
@@ -159,14 +162,22 @@ let inimigo = inimigos[i];
 let curaHeroi = false;
 let curaInimigo = false;
   console.log(`
- SEU PROXIMO INIMIGO É:`);
+       SEU PROXIMO INIMIGO É:`);
   console.table(inimigos[i])
  for (;;) { //ISSO AQUI É NOVO PRA MIM
     if (heroi.hpAtual <= 0 || inimigo.hp <= 0) break;
- console.log(`${heroi.nome}: ${heroi.hpAtual}/${heroi.hpMax}`);
- console.log(`${inimigo.nome}: ${inimigo.hp} HP`);
+
  console.log(`
-  ===== ESCOLHA UMA ACAO =====
+ ============================================
+ HEROI: ${heroi.nome}: ${heroi.hpAtual} HP/${heroi.hpMax} HP
+ ============================================`);
+ console.log(`
+ ============================================ 
+ INIMIGO: ${inimigo.nome}: ${inimigo.hp} HP
+ ============================================`);
+
+ console.log(`
+                ===== ESCOLHA UMA ACAO =====
     1 – Atacar
         • Causa dano aleatório entre o dano mínimo e máximo
     2 – Defender
@@ -175,11 +186,12 @@ let curaInimigo = false;
         • Recupera entre 10 e 20 HP 
         • Pode ser usado apenas 1 vez por batalha
   `);
+
+
   let acaoDoHeroi = readline.questionInt("Digite sua acao: ");
-   if(acaoDoHeroi < 1 || acaoDoHeroi > 3) {  
-    console.log("Opção inválida! Digite 1, 2 ou 3. Inicie o jogo novamente...");
-    process.exit();
-  }; //VALIDACAO QUE O USUARIO RETORNE APENAS 1, 2 OU 3, SE NÃO, PROCESS.EXIT ENCERRA O CODIGO
+  while (acaoDoHeroi < 1 || acaoDoHeroi > 3) {
+    acaoDoHeroi = readline.questionInt("Valor invalido. Digite um numero de 1 a 3: ");
+  };
   let danoDoHeroi = 0;
   let danoInimigo = 0;
   let defesaInimigo = false;
@@ -227,7 +239,7 @@ let curaInimigo = false;
     }
     inimigo.hp -= danoDoHeroi;
     heroi.hpAtual -= danoInimigo;
-    console.log(` Você causou ${danoDoHeroi}`);
+    console.log(`||||  VOCE CAUSOU ${danoDoHeroi}  ||||`);
     console.log(` O inimigo causou ${danoInimigo} de dano`);
   }
   if (heroi.hpAtual <= 0) {
@@ -235,13 +247,12 @@ let curaInimigo = false;
  === GAME OVER! ===
 ${heroi.nome} foi derrotado por ${inimigo.nome}
 `);
-    break;
   } else {
     console.log(` Você derrotou ${inimigo.nome}!`);
     heroi.hpAtual = Math.min(heroi.hpAtual + 25, heroi.hpMax);
     console.log(` Recuperou 25 HP. HP atual: ${heroi.hpAtual}`);
   }
-}
+};
   // ============================================================
   // RESULTADO FINAL
   // ============================================================
@@ -262,7 +273,7 @@ ${heroi.nome} foi derrotado por ${inimigo.nome}
   //        "GAME OVER"
   //        "<heroi.nome> caiu em batalha contra o <nome do inimigo>"
   //        "══════════════════════════════"
-  
+
   // → Seu código aqui:
 if (heroi.hpAtual > 0) {
   console.log(`
@@ -272,4 +283,8 @@ ${heroi.nome} sobreviveu a todas as batalhas!
 HP final: ${heroi.hpAtual} / ${heroi.hpMax}
 ══════════════════════════════
 `);
-}
+} 
+
+function limparTerminal(){
+  console.clear();
+};
